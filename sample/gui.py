@@ -1,7 +1,7 @@
 import tkinter
 
 
-def play(start_hole, player, score_N, score_S,ck):
+def play(start_hole, player, score_N, score_S,clicks):
     
     # get amount_seeds
     amount_seeds = seeds[start_hole]
@@ -36,17 +36,11 @@ def play(start_hole, player, score_N, score_S,ck):
     scores[1].delete("1.0", "end")
     scores[1].insert('end',f'Score du Joueur S : {score_S}')
 
-    # change player
-    ck +=1
-    if ck%2==0:
-        player = 'N' 
-    else:
-        player ='S'
-   
 
-    # update player
+    # update click : 
+    clicks += 1
     info[0].delete("1.0", "end")
-    info[0].insert('end',f'Au tour du joueur {ck}.')
+    info[0].insert('end',f'nombre de click : {clicks}.')
 
     
 
@@ -69,26 +63,7 @@ def draw_board():
         #score_box.config(state='disabled')
         scores.append(score_box)
 
-
-
-    # holes
-    for index_hole in range(12):
-        button = tkinter.Button(
-                    root, text = "4",  font=("Arial",10),
-                    width=10,
-                    height=5,
-                    command =lambda idx = index_hole, ply = player,  sN = score_N,sS = score_S,ck = clicks: play(idx, ply, sN, sS,ck)
-                    )
-        button.pack(expand=True)
-        if index_hole < 6:
-            button.place(x= 10 + index_hole*100, y = 150)
-        if index_hole > 5 : 
-            button.place(x=  10 + 5*100 - (index_hole-6)*100 , y = 50)
-        buttons.append(button)
-
-    
-
-    # info text
+        # info text
 
     info_box = tkinter.Text(
             root,
@@ -99,6 +74,25 @@ def draw_board():
     info_box.place(x = 10 , y = 300)
     info_box.insert('end','Au tour du joueur S.')
     info.append(info_box)
+
+    # holes
+    for index_hole in range(12):
+        button = tkinter.Button(
+                    root, text = "4",  font=("Arial",10),
+                    width=10,
+                    height=5,
+                    command =lambda idx = index_hole, ply = player,  sN = score_N, sS = score_S, ck = clicks: play(idx, ply, sN, sS,ck)
+                    )
+        button.pack(expand=True)
+        if index_hole < 6:
+            button.place(x= 10 + index_hole*100, y = 150)
+        if index_hole > 5 : 
+            button.place(x=  10 + 5*100 - (index_hole-6)*100 , y = 50)
+        buttons.append(button)
+
+    
+
+
     
     
     
@@ -108,6 +102,7 @@ def draw_board():
 buttons = []
 scores = []
 info = []
+clicks = 0
 
 player = 'S'
 seeds = [4,4,4,4,4,4,4,4,4,4,4,4]
