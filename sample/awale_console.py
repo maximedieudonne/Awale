@@ -129,9 +129,6 @@ class Awale :
         self.show_scores()
 # démarrer le jeu
 
-root = tkinter.Tk()
-root.title("Awale")
-root.minsize(500,500)
-root.mainloop()
+
 awale = Awale()
 awale.start()

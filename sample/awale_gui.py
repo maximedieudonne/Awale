@@ -78,7 +78,7 @@ class Game(tk.Frame):
         self.scoreS_label = tk.Label(scoreS_frame, text="0", font=FONT)
         self.scoreS_label.grid(row=1)
 
-        # make player
+        # make player frame
         player_frame = tk.Frame(self)
         player_frame.place(x=5,y = 620)
         tk.Label(
@@ -88,6 +88,12 @@ class Game(tk.Frame):
         ).grid(row = 0, column=0)
         self.player_label = tk.Label(player_frame, text="Sud", font=FONT)
         self.player_label.grid(row = 0, column=1)
+
+        # make win frame
+        win_frame = tk.Frame(self)
+        win_frame.place(x=5,y = 720)
+        self.win_label = tk.Label(win_frame, text="", font=FONT)
+        self.win_label.grid()
 
 
     def start_game(self):
@@ -148,11 +154,11 @@ class Game(tk.Frame):
 
     def is_player_win(self):
         win = False
-        if self.score_N >= 24 :
-            print("Le Joueur N a gagné !")
+        if self.scoreN >= 24 :
+            self.win_label.config(text="Le Joueur N a gagné !")
             win = True
-        if self.score_S >= 24 : 
-            print("Le joueur S a gagné ! ")
+        if self.scoreS >= 24 : 
+            self.win_label.config(text="Le Joueur S a gagné !")
             win = True
         return win
 
@@ -173,13 +179,14 @@ class Game(tk.Frame):
             self.player_label.config(text = " Sud ")
         if self.player == 'N' :
             self.player_label.config(text = " Nord ")
-            
+
     def play(self,event, idx_cell):
         self.take_seed(idx_cell)
         if self.flag_correct_move : 
             self.move_seeds(idx_cell)
             self.player = self.swap_player_turn()
             self.update_GUI()
+            self.is_player_win()
 
 if __name__ == "__main__":
     Game()
