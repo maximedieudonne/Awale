@@ -90,13 +90,6 @@ def draw_board():
             button.place(x=  10 + 5*100 - (index_hole-6)*100 , y = 50)
         buttons.append(button)
 
-    
-
-
-    
-    
-    
-
 
 # init 
 buttons = []

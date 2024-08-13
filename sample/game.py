@@ -2,14 +2,11 @@ import random
 import tkinter
 
 class Awale :
-
     def __init__(self) :
         self.holes = []
         self.seeds = []
         self.score_N = 0
         self.score_S = 0
-
-
 
 
     def create_board(self) : 
