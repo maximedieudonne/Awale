@@ -1,13 +1,13 @@
 import random
-
+import tkinter
 
 class Awale :
-
     def __init__(self) :
         self.holes = []
         self.seeds = []
         self.score_N = 0
         self.score_S = 0
+
 
     def create_board(self) : 
         self.holes = [1,2,3,4,5,6,7,8,9,10,11,12]
@@ -128,5 +128,7 @@ class Awale :
         self.show_board()
         self.show_scores()
 # démarrer le jeu
+
+
 awale = Awale()
 awale.start()
